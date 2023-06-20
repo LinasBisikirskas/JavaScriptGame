@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>'game'</title>
+  <script src="./p5.min.js"></script>
+  <script src="game.js"></script>
+  
+<script defer src="bundle.js"></script></head>
+
+<body>
+  <div id="gameStyle">
+    <div id="game"></div>
+    <div id="generatedCodeDiv">
+      Sugeneruotas kodas:
+      <ul id="generatedCode"></ul>
+    </div>
+  </div>
+
+  <div id="input">
+    <textarea id="code" spellcheck="false"></textarea>
+    <br />
+    <div id="buttons">
+      <button id="vykdyti" class="btn">Vykdyti</button>
+      <button id="pagalba" class="btn" >?</button>
+      <button id="grid" class="btn" >#</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="helpText">aaa</div>
+      <div id = "helpIMG"></div>
+    </div>
+  </div>
+
+  <script id="runCode">
+    function runCode() {
+      const ul = document.getElementById("generatedCode");
+      const liElements = ul.getElementsByTagName("li");
+      const arrayList = [];
+      for (let i = 0; i < liElements.length; i++) {
+        arrayList.push(liElements[i].innerHTML);
+      }
+      // console.log(arrayList);
+      myFunction(arrayList);
+    }
+  </script>
+
+  <script>
+    const textarea = document.getElementById("code");
+    textarea.addEventListener("keydown", function (e) {
+      if (e.key === "Tab") {
+        e.preventDefault();
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        const value = this.value;
+        this.value = value.substring(0, start) + "\t" + value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+      }
+    });
+
+    // function openModal() {
+    //   const modal = document.getElementById("myModal");
+    //   modal.style.display = "block";
+    // }
+
+    function closeModal() {
+      const modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+  </script>
+</body>
+
+</html>
